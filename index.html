@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>README Generator</h1>
+        <p>Create beautiful GitHub README files in seconds.</p>
+    </header>
+
+    <div class="card">
+
+        <label>Project Name</label>
+        <input id="projectName" type="text" placeholder="Awesome Project">
+
+        <label>Description</label>
+        <textarea id="description" placeholder="Describe your project..."></textarea>
+
+        <label>Installation</label>
+        <textarea id="installation" placeholder="npm install"></textarea>
+
+        <label>Usage</label>
+        <textarea id="usage" placeholder="npm start"></textarea>
+
+        <label>License</label>
+
+        <select id="license">
+            <option>MIT</option>
+            <option>Apache-2.0</option>
+            <option>GPL-3.0</option>
+            <option>BSD-3-Clause</option>
+        </select>
+
+        <div class="buttons">
+
+            <button id="generateBtn">
+                Generate README
+            </button>
+
+            <button id="copyBtn">
+                Copy
+            </button>
+
+            <button id="downloadBtn">
+                Download
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="output">
+
+        <h2>Preview</h2>
+
+        <pre id="preview">
+Your README will appear here...
+        </pre>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
