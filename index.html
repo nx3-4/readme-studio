@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="description"
+    content="Create professional README files with live preview."
+  >
+
+  <meta name="theme-color" content="#070b16" id="themeColorMeta">
+
+  <title>README Studio</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#studio" data-i18n="skipToEditor">
+    Skip to editor
+  </a>
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="README Studio home">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+
+        <span class="brand-text">
+          <strong>README Studio</strong>
+          <small data-i18n="brandSubtitle">Open-source README builder</small>
+        </span>
+      </a>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="Open navigation"
+        aria-controls="navigationLinks"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-links" id="navigationLinks">
+        <a href="#studio" data-i18n="studio">Studio</a>
+
+        <a href="#features" data-i18n="features">Features</a>
+
+        <a
+          href="https://github.com/nx3-4/readme-generator"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n="github"
+        >
+          GitHub
+        </a>
+
+        <div class="navbar-controls">
+          <label class="language-control" for="interfaceLanguage">
+            <span class="control-label" data-i18n="interfaceLanguage">
+              Language
+            </span>
+
+            <select
+              id="interfaceLanguage"
+              name="interfaceLanguage"
+              aria-label="Interface language"
+            >
+              <option value="en">English</option>
+              <option value="ar">العربية</option>
+            </select>
+          </label>
+
+          <label class="theme-control" for="themeSelector">
+            <span class="control-label" data-i18n="appearance">
+              Theme
+            </span>
+
+            <select
+              id="themeSelector"
+              name="themeSelector"
+              aria-label="Interface theme"
+            >
+              <option value="dark" data-i18n="darkTheme">Dark</option>
+              <option value="light" data-i18n="lightTheme">Light</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-badge">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span data-i18n="openSource">Free and open source</span>
+      </div>
+
+      <h1 data-i18n="heroTitle">
+        Build a professional README in minutes
+      </h1>
+
+      <p data-i18n="heroDescription">
+        Write your project details and get a clean Markdown file with a live
+        preview, local auto-save, and one-click export.
+      </p>
+
+      <div class="hero-actions">
+        <a
+          class="button button-primary"
+          href="#studio"
+          data-i18n="startCreating"
+        >
+          Start creating
+        </a>
+
+        <a
+          class="button button-secondary"
+          href="https://github.com/nx3-4/readme-generator"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n="viewSource"
+        >
+          View source
+        </a>
+      </div>
+    </section>
+
+    <section class="studio-section" id="studio">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="editor">Editor</p>
+
+          <h2 data-i18n="projectDetails">
+            Project details
+          </h2>
+
+          <p data-i18n="editorDescription">
+            Complete the form and your README will update automatically.
+          </p>
+        </div>
+
+        <div
+          class="notice"
+          id="notice"
+          role="status"
+          aria-live="polite"
+          hidden
+        ></div>
+
+        <section class="import-card" aria-labelledby="importTitle">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow" data-i18n="optional">Optional</p>
+
+              <h3 id="importTitle" data-i18n="importRepository">
+                Import repository
+              </h3>
+            </div>
+
+            <span class="status-badge" data-i18n="githubPublicRepos">
+              Public GitHub repositories
+            </span>
+          </div>
+
+          <p class="supporting-text" data-i18n="importDescription">
+            Paste a public GitHub repository URL to import its basic details.
+          </p>
+
+          <div class="import-row">
+            <div class="input-wrapper">
+              <label
+                class="sr-only"
+                for="repositoryUrl"
+                data-i18n="repositoryUrl"
+              >
+                Repository URL
+              </label>
+
+              <input
+                id="repositoryUrl"
+                type="text"
+                inputmode="url"
+                autocomplete="url"
+                autocapitalize="none"
+                spellcheck="false"
+                placeholder="https://github.com/owner/repository"
+                data-i18n-placeholder="repositoryPlaceholder"
+              >
+            </div>
+
+            <div class="import-actions">
+              <button
+                class="button button-primary"
+                id="importButton"
+                type="button"
+                data-i18n="import"
+              >
+                Import
+              </button>
+
+              <button
+                class="button button-danger"
+                id="clearButton"
+                type="button"
+                data-i18n="clearAll"
+              >
+                Clear all
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <div class="workspace">
+          <form class="editor-panel panel" id="readmeForm" novalidate>
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow" data-i18n="content">Content</p>
+
+                <h3 data-i18n="readmeInformation">
+                  README information
+                </h3>
+              </div>
+
+              <span class="autosave-badge">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span data-i18n="autosaved">Auto-saved</span>
+              </span>
+            </div>
+
+            <div class="form-grid">
+              <div class="field field-full">
+                <label for="projectName">
+                  <span data-i18n="projectName">Project name</span>
+                  <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+
+                <input
+                  id="projectName"
+                  name="projectName"
+                  type="text"
+                  maxlength="100"
+                  autocomplete="off"
+                  placeholder="README Studio"
+                  data-i18n-placeholder="projectNamePlaceholder"
+                  required
+                >
+
+                <div class="field-meta">
+                  <small data-i18n="projectNameHint">
+                    Use the official name of your project.
+                  </small>
+
+                  <small
+                    class="character-count"
+                    id="projectNameCount"
+                    aria-live="polite"
+                  >
+                    0 / 100
+                  </small>
+                </div>
+              </div>
+
+              <div class="field field-full">
+                <label for="description" data-i18n="description">
+                  Description
+                </label>
+
+                <textarea
+                  id="description"
+                  name="description"
+                  maxlength="500"
+                  rows="5"
+                  placeholder="Describe what your project does and why it exists..."
+                  data-i18n-placeholder="descriptionPlaceholder"
+                ></textarea>
+
+                <div class="field-meta">
+                  <small data-i18n="descriptionHint">
+                    Keep it clear, specific, and useful.
+                  </small>
+
+                  <small
+                    class="character-count"
+                    id="descriptionCount"
+                    aria-live="polite"
+                  >
+                    0 / 500
+                  </small>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="version" data-i18n="version">
+                  Version
+                </label>
+
+                <input
+                  id="version"
+                  name="version"
+                  type="text"
+                  maxlength="30"
+                  autocomplete="off"
+                  placeholder="1.0.0"
+                  data-i18n-placeholder="versionPlaceholder"
+                >
+              </div>
+
+              <div class="field">
+                <label for="license" data-i18n="license">
+                  License
+                </label>
+
+                <select id="license" name="license">
+                  <option value="MIT">MIT</option>
+                  <option value="Apache-2.0">Apache-2.0</option>
+                  <option value="GPL-3.0">GPL-3.0</option>
+                  <option value="BSD-3-Clause">BSD-3-Clause</option>
+                  <option value="MPL-2.0">MPL-2.0</option>
+                  <option value="Unlicense">Unlicense</option>
+                  <option value="None" data-i18n="noLicense">
+                    No license
+                  </option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label
+                  for="programmingLanguage"
+                  data-i18n="programmingLanguage"
+                >
+                  Programming language
+                </label>
+
+                <input
+                  id="programmingLanguage"
+                  name="programmingLanguage"
+                  type="text"
+                  maxlength="50"
+                  autocomplete="off"
+                  placeholder="JavaScript"
+                  data-i18n-placeholder="languagePlaceholder"
+                >
+              </div>
+
+              <div class="field">
+                <label for="repository" data-i18n="repository">
+                  Repository
+                </label>
+
+                <input
+                  id="repository"
+                  name="repository"
+                  type="url"
+                  inputmode="url"
+                  autocomplete="url"
+                  autocapitalize="none"
+                  spellcheck="false"
+                  placeholder="https://github.com/owner/repository"
+                  data-i18n-placeholder="repositoryPlaceholder"
+                >
+              </div>
+
+              <div class="field field-full">
+                <label for="installation" data-i18n="installation">
+                  Installation
+                </label>
+
+                <textarea
+                  id="installation"
+                  name="installation"
+                  rows="4"
+                  maxlength="1000"
+                  spellcheck="false"
+                  placeholder="npm install"
+                  data-i18n-placeholder="installationPlaceholder"
+                ></textarea>
+              </div>
+
+              <div class="field field-full">
+                <label for="usage" data-i18n="usage">
+                  Usage
+                </label>
+
+                <textarea
+                  id="usage"
+                  name="usage"
+                  rows="4"
+                  maxlength="1200"
+                  placeholder="Explain how to use the project..."
+                  data-i18n-placeholder="usagePlaceholder"
+                ></textarea>
+              </div>
+
+              <div class="field field-full">
+                <label for="featuresInput" data-i18n="featuresLabel">
+                  Features
+                </label>
+
+                <textarea
+                  id="featuresInput"
+                  name="featuresInput"
+                  rows="4"
+                  maxlength="1000"
+                  placeholder="One feature per line"
+                  data-i18n-placeholder="featuresPlaceholder"
+                ></textarea>
+
+                <small data-i18n="featuresHint">
+                  Add one feature per line.
+                </small>
+              </div>
+
+              <div class="field field-full">
+                <label for="author" data-i18n="author">
+                  Author
+                </label>
+
+                <input
+                  id="author"
+                  name="author"
+                  type="text"
+                  maxlength="100"
+                  autocomplete="name"
+                  placeholder="Your name"
+                  data-i18n-placeholder="authorPlaceholder"
+                >
+              </div>
+            </div>
+          </form>
+
+          <section class="preview-panel panel" aria-labelledby="previewTitle">
+            <div class="panel-heading preview-heading">
+              <div>
+                <p class="eyebrow" data-i18n="preview">Preview</p>
+
+                <h3 id="previewTitle" data-i18n="livePreview">
+                  Live README
+                </h3>
+              </div>
+
+              <span class="status-badge">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span data-i18n="live">Live</span>
+              </span>
+            </div>
+
+            <div
+              class="markdown-preview"
+              id="markdownPreview"
+              tabindex="0"
+              aria-label="README preview"
+            ></div>
+
+            <div class="preview-actions">
+              <button
+                class="button button-secondary"
+                id="copyButton"
+                type="button"
+                data-i18n="copyMarkdown"
+              >
+                Copy Markdown
+              </button>
+
+              <button
+                class="button button-primary"
+                id="downloadButton"
+                type="button"
+                data-i18n="downloadReadme"
+              >
+                Download README.md
+              </button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="features-section container" id="features">
+      <div class="section-heading centered">
+        <p class="eyebrow" data-i18n="features">Features</p>
+
+        <h2 data-i18n="everythingYouNeed">
+          Everything you need
+        </h2>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3 data-i18n="featureLiveTitle">
+            Live preview
+          </h3>
+
+          <p data-i18n="featureLiveDescription">
+            See your README update while you type.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3 data-i18n="featureSaveTitle">
+            Local auto-save
+          </h3>
+
+          <p data-i18n="featureSaveDescription">
+            Your work stays saved in your browser.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3 data-i18n="featureExportTitle">
+            Fast export
+          </h3>
+
+          <p data-i18n="featureExportDescription">
+            Copy Markdown or download a ready README.md file.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>
+        <span>README Studio</span>
+        <span aria-hidden="true">—</span>
+        <span data-i18n="footerText">
+          Built for open-source developers.
+        </span>
+      </p>
+
+      <a
+        href="https://github.com/nx3-4/readme-generator"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-i18n="sourceCode"
+      >
+        Source code
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
